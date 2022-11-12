@@ -1,0 +1,21 @@
+apiVersion: v1
+kind: Pod
+metadata: 
+  name: nginx-pod # lowercase alphanumeric charecters '-' ,'.' and must start and end with an alphanumeric charecter
+  namespace: development
+  labels:
+    name: Sridhar  # used by service to select the pod 
+    Environment: Dev
+spec:
+  containers:
+    - name: nginx
+      image: nginx
+      imagePullPolicy: Always
+      env:
+        - name: Environment
+          value: "Dev"
+        
+
+
+
+
