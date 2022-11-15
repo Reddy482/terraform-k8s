@@ -1,0 +1,24 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: nginx-rs # pod name is prefixed with this
+  labels:
+    name: Sridhar
+spec:
+  replicas: 3
+  selector:
+    matchExpressions:
+      - {key: app, operator: In , values: [nginx_1]} # can have multiple lables, possible operators are In, NotIn
+  template:
+    metadata:
+      name: mynginx
+      labels:
+        app: nginx_1
+    spec:
+      containers:
+        - name: nginx
+          image: nginx
+          env:
+          - name: Environment
+            value: "Dev"
+    

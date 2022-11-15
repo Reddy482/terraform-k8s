@@ -1,21 +1,25 @@
 apiVersion: v1
 kind: Pod
-metadata: 
-  name: nginx-pod # lowercase alphanumeric charecters '-' ,'.' and must start and end with an alphanumeric charecter
-  namespace: development
+metadata:
+  name: nginx-pod
   labels:
-    name: Sridhar  # used by service to select the pod 
-    Environment: Dev
+    name: Sridhar
 spec:
   containers:
-    - name: nginx
-      image: nginx
-      imagePullPolicy: Always
-      env:
-        - name: Environment
-          value: "Dev"
-        
+  - name: nginx-pod
+    image: nginx
+    imagePullPolicy: Always
+    env:
+      - name: Environment
+        value: "Dev"
+    resources:
+      requests: # sets the minimum amount of RAM or CPU required for the container. Importent at schedule time
+        memory: "6Mi" #Mi stands for mebibytes 1Mi = 1048.58 kb
+        cpu: "100m" # 1CPU = 1vCPU/Core
+      limits: # sets the minimum amount of RAM or CPU required for the container. Important at run time
+        memory: "12Mi" # ram
+        cpu: "5" # m = millicpu = millicores
+    ports:
+      - containerPort: 80
 
-
-
-
+# https://signoz.io/blog/kubectl-top/ - understanding more about memory and cpu

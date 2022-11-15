@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: k8s-deploy
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx_1
+  template:
+    metadata:
+      labels:
+        app: nginx_1
+    spec:
+      containers:
+      - name: mynginx
+        image: nginx
+        resources:
+          limits:
+            memory: "12Mi"
+            cpu: "50m"
+        

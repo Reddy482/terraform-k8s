@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: rc-nginx
+  labels:
+    name: Sridhar
+spec:
+  replicas: 2
+  selector:
+    name: Sridhar # can work with only one label
+  # same as pod defination
+  template:
+    metadata:
+      name: nginx
+      labels:
+        name: Sridhar  
+        Environment: Dev
+    spec:
+      containers:
+        - name: nginxpod
+          image: nginx
+          ports:
+            - containerPort: 80 # its optional , Can also be specified in svc targetPort
