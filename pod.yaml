@@ -21,5 +21,26 @@ spec:
         cpu: "5" # m = millicpu = millicores
     ports:
       - containerPort: 80
+  affinity:  # defining affinity
+    nodeAffinity: # defining nodeAffinity
+      requiredDuringSchedulingIgnoredDuringExecution:  # hardRule - requirement should match to get pod created
+        nodeSelectorTerms: 
+         - matchExpressions:
+            - key: zone
+              operator: In
+              values:
+                - us-east-1
+                - eu-west-1
+      preferredDuringSchedulingIgnoredDuringExecution: # softRule - its optional 
+        - weight: 1 # lower value get high priority 
+          preference:
+            matchExpressions:
+              - key: drbackup
+                operator: In
+                values:
+                  - europe
+          
+
+
 
 # https://signoz.io/blog/kubectl-top/ - understanding more about memory and cpu

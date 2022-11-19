@@ -3,7 +3,8 @@ kind: Deployment
 metadata:
   name: k8s-deploy
 spec:
-  replicas: 1
+  replicas: 1 # this value override by hpa
+  revisionHistoryLimit: 15 # default is 10
   selector:
     matchLabels:
       app: nginx_1
@@ -19,4 +20,14 @@ spec:
           limits:
             memory: "12Mi"
             cpu: "50m"
+      #   volumeMounts:
+      #     - mountPath: "/var/www/html"
+      #       name: mypd
+      # volumes:
+      #   - name: mypd
+      #     persistentVolumeClaim:
+      #       claimName: mypvc
+      nodeSelector:  # create a pod on a node which has label app: frontend
+        app: frontend
+
         
