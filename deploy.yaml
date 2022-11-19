@@ -29,5 +29,6 @@ spec:
       #       claimName: mypvc
       nodeSelector:  # create a pod on a node which has label app: frontend
         app: frontend
+        
 
         
