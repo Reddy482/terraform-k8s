@@ -27,7 +27,7 @@ spec:
       #   - name: mypd
       #     persistentVolumeClaim:
       #       claimName: mypvc
-      nodeSelector:  # create a pod on a node which has label app: frontend
+      nodeSelector:  # create a pod on a node which has label app: frontend # will work only for single lable.
         app: frontend
         
 
